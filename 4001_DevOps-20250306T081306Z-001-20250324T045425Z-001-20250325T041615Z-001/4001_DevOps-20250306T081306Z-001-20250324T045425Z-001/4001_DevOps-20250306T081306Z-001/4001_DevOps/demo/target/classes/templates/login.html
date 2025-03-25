@@ -1,0 +1,71 @@
+<div class="login-page">
+    <div class="login-container">
+      <div class="image-section">
+        <img
+          src="https://placehold.co/580x853"
+          alt="Featured image"
+          class="featured-image"
+        />
+      </div>
+      <div class="form-section">
+        <h1 class="site-title">SwapShelf</h1>
+        <form
+          x-data="{
+            email: '',
+            password: '',
+            isHovering: false,
+            showError: false,
+            handleSubmit() {
+              if (!this.email || !this.password) {
+                this.showError = true;
+                return;
+              }
+              this.showError = false;
+            }
+          }"
+          x-on:submit.prevent="handleSubmit"
+        >
+          <input
+            type="email"
+            x-model="email"
+            placeholder="Email"
+            class="form-input"
+          />
+          <input
+            type="password"
+            x-model="password"
+            placeholder="Password"
+            class="form-input"
+          />
+          <div x-show="showError" class="error-message">
+            Please enter both email and password
+          </div>
+          <button
+            type="submit"
+            x-on:mouseenter="isHovering = true"
+            x-on:mouseleave="isHovering = false"
+            x-bind:style="{ transform: isHovering ? 'scale(1.02)' : 'scale(1)' }"
+            class="submit-button"
+          >
+            Login
+          </button>
+        </form>
+        <div class="signup-section">
+          <span>Not Registered?</span>
+          <a href="#" class="signup-link">Sign up</a>
+          <span>here!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    defer
+  ></script>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tiro+Gurmukhi&family=Vampiro+One&display=swap"
+    rel="stylesheet"
+  />
+  
