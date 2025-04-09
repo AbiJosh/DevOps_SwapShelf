@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Interface</title>
+    <link
+    href="chat.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/chat.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <button class="menu-button" id="menuButton">
+          <svg width="74" height="74" viewBox="0 0 74 74" fill="none">
+            <path
+              d="M4.625 13.875H69.375V27.75H4.625V13.875ZM4.625 32.375H69.375V46.25H4.625V32.375ZM4.625 50.875H69.375V64.75H4.625V50.875Z"
+              fill="url(#paint0_linear_157_21)"
+            ></path>
+            <defs>
+              <linearGradient
+                id="paint0_linear_157_21"
+                x1="37"
+                y1="13.875"
+                x2="37"
+                y2="64.75"
+              >
+                <stop stop-color="#8B7E7E"></stop>
+                <stop offset="0.995" stop-color="#252121"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </button>
+        <h1 class="chat-title">ABC</h1>
+      </header>
+
+
+      <main class="chat-main">
+        <article class="message-bubble sender">
+          <p class="message-text">
+            Hi, my name is ABC. I would like to buy your book name xyz. For how
+            much would you sell the book?
+          </p>
+        </article>
+
+
+        <article class="message-bubble receiver">
+          <p class="message-text">
+            Hi, my name is DEF. I would like to sell it for ₹200.
+          </p>
+        </article>
+      </main>
+
+
+      <footer class="chat-footer">
+        <div class="message-input-container">
+          <input
+            type="text"
+            placeholder="SEND MESSAGE"
+            class="message-input"
+            id="messageInput"
+          />
+          <button class="send-button" id="sendButton">Send</button>
+        </div>
+      </footer>
+
+
+      <div class="menu-overlay" id="menuOverlay" hidden>
+        <nav class="side-navigation">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link">Messages</a></li>
+            <li><a href="#" class="nav-link">Profile</a></li>
+            <li><a href="#" class="nav-link">Settings</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
+    <script>
+         (() => {
+    const state = {
+      menuOpen: false,
+      message: "",
+      sendMessage() {
+        if (state.message.trim()) {
+          // In a real app, we would add the message to the chat
+          // For now, just clear the input
+          state.message = "";
+          update();
+        }
+      },
+    };
+  
+  
+    // DOM elements
+    const menuButton = document.getElementById("menuButton");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const messageInput = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
+  
+  
+    // Event handlers
+    function onMenuButtonClick() {
+      state.menuOpen = !state.menuOpen;
+      update();
+    }
+  
+  
+    function onMessageInputChange(event) {
+      state.message = event.target.value;
+      update();
+    }
+  
+  
+    function onSendButtonClick() {
+      state.sendMessage();
+    }
+  
+  
+    function onMenuOverlayClick(event) {
+      // Only close if clicking the overlay itself, not the navigation
+      if (event.target === menuOverlay) {
+        state.menuOpen = false;
+        update();
+      }
+    }
+  
+  
+    // Add event listeners
+    menuButton.addEventListener("click", onMenuButtonClick);
+    messageInput.addEventListener("input", onMessageInputChange);
+    sendButton.addEventListener("click", onSendButtonClick);
+    menuOverlay.addEventListener("click", onMenuOverlayClick);
+  
+  
+    // Handle Enter key in message input
+    messageInput.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        state.sendMessage();
+      }
+    });
+  
+  
+    // Update the UI based on state
+    function update() {
+      // Update message input value
+      messageInput.value = state.message;
+  
+  
+      // Update menu visibility
+      if (state.menuOpen) {
+        menuOverlay.removeAttribute("hidden");
+      } else {
+        menuOverlay.setAttribute("hidden", "");
+      }
+    }
+  
+  
+    // Initialize UI
+    update();
+  })();
+    </script>
+  </body>
+</html>

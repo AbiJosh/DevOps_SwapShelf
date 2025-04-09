@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwapShelf - Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="/first.css" rel="stylesheet">
+</head>
+<body>
+    <div class="signup-container">
+        <img src="bg_img.jpg" class="background-image" alt="Background">
+        <div class="form-wrapper">
+            <div class="image-container">
+                <img src="left_img.jpg" class="feature-image" alt="Feature">
+            </div>
+            <form x-data="registerForm()" class="signup-form">
+                <header class="form-header">
+                    <h1 class="brand-title">SwapShelf</h1>
+                </header>
+                <div class="form-fields">
+                    <div class="input-group">
+                        <input x-model="formData.fullName" type="text" placeholder="Full Name" class="form-input" required>
+                    </div>
+                    <div class="input-group">
+                        <input x-model="formData.email" type="email" placeholder="Email" class="form-input" required>
+                    </div>
+                    <div class="input-group">
+                        <input x-model="formData.password" type="password" placeholder="Password" class="form-input" required>
+                    </div>
+                    <button type="submit" x-on:mouseenter="isHovering = true" x-on:mouseleave="isHovering = false" x-on:click.prevent="submitForm()" x-bind:style="{ transform: isHovering ? 'scale(1.02)' : 'scale(1)', background: isHovering ? '#333' : '#000' }" class="submit-button">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function registerForm() {
+            return {
+                formData: {
+                    fullName: '',
+                    email: '',
+                    password: ''
+                },
+                isHovering: false,
+                async submitForm() {
+                    if (!this.formData.fullName || !this.formData.email || !this.formData.password) {
+                        alert("All fields are required!");
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch('http://localhost:8080/auth/register', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(this.formData)
+                        });
+
+                        if (response.ok) {
+                            alert("Registration successful! Redirecting to login...");
+                            window.location.href = "/login";
+                        } else {
+                            const errorText = await response.text();
+                            alert("Registration failed: " + errorText);
+                        }
+                    } catch (error) {
+                        alert("Error connecting to server!");
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>

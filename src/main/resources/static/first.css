@@ -1,0 +1,120 @@
+.signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    font-family: "Inter", sans-serif;
+    position: relative;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    opacity: 0.3;
+  }
+  
+  .form-wrapper {
+    display: flex;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .image-container {
+    width: 580px;
+    height: 838px;
+    background: #d9d9d9;
+  }
+  
+  .feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .signup-form {
+    width: 580px;
+    background: rgba(74, 86, 74, 0.51);
+    padding: 48px;
+    border-radius: 12px;
+  }
+  
+  .form-header {
+    margin-bottom: 48px;
+  }
+  
+  .brand-title {
+    font-size: 36px;
+    font-family: "Vampiro One", cursive;
+    color: white;
+  }
+  
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .input-group {
+    position: relative;
+  }
+  
+  .form-input {
+    width: 100%;
+    height: 64px;
+    background: rgba(36, 34, 34, 0.7);
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 32px;
+    font-family: "Tiro Gurmukhi", serif;
+    color: white;
+    outline: none;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .form-input:focus {
+    border-color: white;
+  }
+  
+  .submit-button {
+    width: 188px;
+    height: 79px;
+    background: #000;
+    color: white;
+    border-radius: 12px;
+    font-size: 36px;
+    font-family: "Tiro Gurmukhi", serif;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  @media (max-width: 1024px) {
+    .form-wrapper {
+      flex-direction: column;
+      padding: 16px;
+    }
+  
+    .image-container {
+      width: 100%;
+      height: 400px;
+    }
+  
+    .signup-form {
+      width: 100%;
+    }
+  }
+  

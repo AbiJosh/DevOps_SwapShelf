@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwapShelf - Login</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <link href="login.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="signup-container">
+    <img src="bg_img.jpg" alt="Background" class="background-image" />
+
+    <div class="form-wrapper">
+      <div class="image-container">
+        <img src="left_img.jpg" alt="Featured image" class="feature-image" />
+      </div>
+
+      <div class="signup-form">
+        <div class="form-header">
+          <h1 class="brand-title">SwapShelf</h1>
+        </div>
+
+        <form x-data="loginForm()" class="form-fields">
+          <input x-model="email" type="email" placeholder="Email" class="form-input" required />
+          <input x-model="password" type="password" placeholder="Password" class="form-input" required />
+          <div class="error-message" x-show="errorMessage" x-text="errorMessage"></div>
+          <button type="submit" x-on:click.prevent="submitLogin()" class="submit-button">Login</button>
+        </form>
+
+        <div class="signup-section">
+          <span>Not Registered?</span>
+          <a href="/register" class="signup-link">Sign up here!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function loginForm() {
+      return {
+        email: '',
+        password: '',
+        errorMessage: '',
+        async submitLogin() {
+          if (!this.email || !this.password) {
+            this.errorMessage = "Please enter both email and password!";
+            return;
+          }
+
+          try {
+            const response = await fetch('http://localhost:8080/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.email, password: this.password })
+            });
+
+            if (response.ok) {
+              alert("Login successful!");
+              window.location.href = "/home";
+            } else {
+              this.errorMessage = "Invalid credentials!";
+            }
+          } catch (error) {
+            this.errorMessage = "Error connecting to server!";
+          }
+        }
+      };
+    }
+  </script>
+</body>
+</html>

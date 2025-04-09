@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwapShelf - Book Trading Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/landing.css">
+</head>
+<body>
+    <div x-data="{ hoveredCard: null, showModal: false, modalContent: '' }" class="flex flex-col min-h-screen w-screen bg-gradient-primary">
+        <!-- Header -->
+        <header class="w-full h-[190px] bg-gradient-header">
+            <div class="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 class="text-[64px] bg-gradient-title bg-clip-text text-transparent">SwapShelf</h1>
+                <p class="text-[24px] text-white max-lg:hidden">Make the most of it</p>
+                <div class="flex gap-4">
+                    <button x-on:click="window.location.href='/register'" class="btn-action">Sign up</button>
+                    <button x-on:click="window.location.href='/login'" class="btn-action">Login</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 px-6 py-12">
+            <div class="max-w-[1440px] mx-auto">
+                <!-- Cards Section -->
+                <div class="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1">
+                    <div class="card-action" x-on:click="showModal = true; modalContent = 'Browse Books'">Browse Books</div>
+                    <div class="card-action" x-on:click="showModal = true; modalContent = 'Get in Touch'">Get in Touch</div>
+                    <div class="card-action" x-on:click="showModal = true; modalContent = 'Trade Books'">Trade Books</div>
+                </div>
+
+                <!-- Description Section -->
+                <section class="mt-16 text-white text-[24px] text-center leading-relaxed">
+                    <p>A community-driven platform where book lovers can sell, trade, or exchange books with fellow enthusiasts.</p>
+                    <p>📚 Browse a variety of books from different genres.</p>
+                    <p>🔄 Trade books with others to keep your reading journey exciting.</p>
+                    <p>💰 Sell your books and earn while sharing knowledge.</p>
+                    <p>Join us today and make the most of your books!</p>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full h-[122px] bg-gradient-footer">
+            <div class="max-w-[1440px] mx-auto px-6 h-full flex items-center justify-between">
+                <p class="text-white text-[18px]">© 2025 SwapShelf. All rights reserved.</p>
+                <nav class="flex gap-6">
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </nav>
+            </div>
+        </footer>
+
+        <!-- Modal -->
+        <div x-show="showModal" x-on:click="showModal = false" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+            <div x-on:click="event.stopPropagation()" class="bg-white p-8 rounded-[28px] w-full max-w-[500px] mx-4">
+                <h2 x-text="modalContent" class="text-[32px] text-center mb-6"></h2>
+                <button x-on:click="showModal = false" class="btn-action w-full">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Exchange Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Header -->
+        <div class="header">
+            <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
+        </div>
+
+        <div class="main-content">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <h2 id="user-name">John Doe</h2>
+                <p id="user-location">📍 New York, USA</p>
+                <p><strong>Interested Genres:</strong></p>
+                <p id="user-genres">Fiction, Mystery, Sci-Fi</p>
+            </div>
+
+            <!-- Right Content Section -->
+            <div class="content-section">
+                <!-- Books Available for Exchange -->
+                <div class="box">
+                    <h3>📚 Books Available for Exchange</h3>
+                    <ul id="book-list">
+                        <li>The Great Gatsby</li>
+                        <li>1984</li>
+                        <li>To Kill a Mockingbird</li>
+                    </ul>
+                    <input type="text" id="book-input" placeholder="Add a book...">
+                    <button id="add-book-btn">Add</button>
+                </div>
+
+                <!-- Books Already Borrowed -->
+                <div class="box">
+                    <h3>📖 Books Already Borrowed</h3>
+                    <ul id="borrowed-list">
+                        <li>The Hobbit</li>
+                        <li>Harry Potter and the Sorcerer's Stone</li>
+                    </ul>
+                    <input type="text" id="borrowed-input" placeholder="Add borrowed book...">
+                    <button id="add-borrowed-btn">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            alert("You are logged in!");
+
+            document.getElementById("add-book-btn").addEventListener("click", function () {
+                let bookInput = document.getElementById("book-input");
+                let bookList = document.getElementById("book-list");
+
+                if (bookInput.value.trim() !== "") {
+                    let li = document.createElement("li");
+                    li.textContent = bookInput.value;
+                    bookList.appendChild(li);
+                    bookInput.value = "";
+                }
+            });
+
+            document.getElementById("add-borrowed-btn").addEventListener("click", function () {
+                let borrowedInput = document.getElementById("borrowed-input");
+                let borrowedList = document.getElementById("borrowed-list");
+
+                if (borrowedInput.value.trim() !== "") {
+                    let li = document.createElement("li");
+                    li.textContent = borrowedInput.value;
+                    borrowedList.appendChild(li);
+                    borrowedInput.value = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #298004;
+}
+
+/* Header */
+.bg-gradient-header {
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+}
+
+.text-transparent {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Buttons */
+.btn-action {
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #32690F;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-action:hover {
+  transform: scale(1.05);
+}
+
+/* Cards */
+.card-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 310px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  border-radius: 28px;
+  border: 1px solid black;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-action:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+.bg-gradient-footer {
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+}
+
+.footer-link {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+  color: #feb47b;
+}
